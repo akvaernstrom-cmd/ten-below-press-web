@@ -1,0 +1,346 @@
+/* ---------------------------------------------------------------------
+   Ten Below Press — design tokens
+   These custom properties are the primary levers for reusing this
+   layout for a different imprint (e.g. WonderBout Books): change the
+   colors and font stacks here and the rest of the site follows.
+------------------------------------------------------------------------ */
+:root {
+  /* Palette: muted Scandinavian blue-grey / petroleum — cool, not near-black. */
+  --color-bg: #30474f;
+  --color-surface: #3a555e;
+  --color-text: #f5f1ea;
+  --color-text-muted: #aabcc2;
+  --color-border: #46626c;
+  --color-accent: #9fb8c4;
+  --color-accent-contrast: #1c2b30;
+
+  /* Background artwork: a single fixed backdrop behind all content.
+     Swap --bg-image (and reposition if needed) to reuse this layout
+     with a different image, e.g. for WonderBout. */
+  --bg-image: url('/Bakgrunn 2560x1501.webp');
+  --bg-position: 68% 42%;
+  --bg-position-narrow: 82% 42%;
+  --color-panel: rgba(28, 41, 46, 0.55);
+  --color-scrim: rgba(20, 30, 34, 0.12);
+  --text-scrim: rgba(16, 24, 28, 0.55);
+
+  /* Dark text used only for the tagline, to match the logo's ink color. */
+  --color-ink: #171310;
+  --ink-halo: rgba(255, 252, 245, 0.55);
+
+  /* Typography: serif for editorial headings, system sans for UI text. */
+  --font-heading: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --content-width: 72rem;
+  --content-width-narrow: 40rem;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Desktop: fit header + publication + footer within one screen, no scroll.
+   Mobile/tablet keep normal document flow and scroll naturally. */
+@media (min-width: 64rem) {
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* Fixed full-page artwork backdrop; content scrolls on top of it. */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::before {
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: var(--bg-position);
+  background-repeat: no-repeat;
+}
+
+body::after {
+  z-index: -1;
+  background: var(--color-scrim);
+}
+
+@media (max-width: 48rem) {
+  body::before {
+    background-position: var(--bg-position-narrow);
+  }
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.wrap {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+.wrap--narrow {
+  max-width: var(--content-width-narrow);
+}
+
+/* Visible keyboard focus states everywhere. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  padding: var(--space-1) var(--space-2);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: var(--space-2);
+  top: var(--space-2);
+}
+
+/* ---------------------------------- Branding ---------------------------------- */
+
+.site-header {
+  padding-block: var(--space-4) var(--space-2);
+}
+
+.brand {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.wordmark {
+  display: inline-flex;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.wordmark__logo {
+  height: 5.25rem;
+  width: auto;
+}
+
+.brand__tagline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  line-height: 1.25;
+  max-width: 22ch;
+  color: var(--color-ink);
+  /* Nudged down to align with the logo's "10" numeral, above its rule line. */
+  margin-top: 0.55rem;
+  text-shadow: 0 1px 14px var(--ink-halo);
+}
+
+@media (max-width: 30rem) {
+  .brand {
+    flex-wrap: nowrap;
+    gap: 0.45rem;
+  }
+
+  .wordmark__logo {
+    height: 3.1rem;
+  }
+
+  .brand__tagline {
+    font-size: 1.3rem;
+    max-width: none;
+    margin-top: 0.28rem;
+    white-space: nowrap;
+  }
+}
+
+/* ---------------------------------- Publication ---------------------------------- */
+
+.publication {
+  padding-block: var(--space-3) var(--space-4);
+}
+
+@media (max-width: 63.99rem) {
+  .publication {
+    /* Extra breathing room below the branding row, mobile/tablet only. */
+    margin-top: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .publication {
+    /* Scales with viewport height so shorter laptop screens stay uncrowded. */
+    margin-top: clamp(1.5rem, 6vh, 4rem);
+  }
+}
+
+.book-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.book-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 28rem;
+}
+
+.book-card__cover {
+  width: 8.25rem;
+  flex: none;
+  aspect-ratio: 992 / 1586;
+  box-shadow: 0 25px 45px -14px rgba(10, 14, 16, 0.55);
+}
+
+.book-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.book-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.15rem;
+  text-shadow: 0 1px 8px var(--text-scrim);
+}
+
+.book-card__category {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  color: var(--color-text);
+}
+
+.book-card__title {
+  font-size: 1.5rem;
+}
+
+.book-card__author {
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.book-card__status {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-top: 0.25rem;
+}
+
+.button {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: var(--space-2);
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  border: 1px solid var(--color-text);
+  text-shadow: 0 1px 8px var(--text-scrim);
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile/tablet only: lift the button off the busier parts of the artwork. */
+@media (max-width: 48rem) {
+  .button {
+    background: rgba(48, 71, 79, 0.26);
+  }
+}
+
+/* ---------------------------------- Footer ---------------------------------- */
+
+.site-footer {
+  padding-block: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 14.6px;
+  color: var(--color-text);
+  text-shadow: 0 1px 8px var(--text-scrim);
+}
+
+.site-footer__email {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+@media (min-width: 48rem) {
+  .site-footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

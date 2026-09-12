@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 720" role="img" aria-label="Placeholder book cover">
+  <rect width="480" height="720" fill="#efece5" />
+  <rect x="0.5" y="0.5" width="479" height="719" fill="none" stroke="#d9d5cb" />
+  <line x1="60" y1="360" x2="420" y2="360" stroke="#5b5a55" stroke-width="1" />
+  <text x="240" y="330" font-family="Georgia, serif" font-size="22" fill="#1c1c1a" text-anchor="middle">Cover</text>
+  <text x="240" y="392" font-family="Georgia, serif" font-size="16" fill="#5b5a55" text-anchor="middle">coming soon</text>
+</svg>

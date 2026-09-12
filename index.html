@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Ten Below Press — Independent Books</title>
+  <meta name="description" content="Ten Below Press is an independent publishing imprint focused on fiction and distinctive books by independent authors." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ten Below Press" />
+  <meta property="og:title" content="Ten Below Press — Independent Books" />
+  <meta property="og:description" content="Independent books. Stories worth staying with." />
+  <!-- Replace with the real deployed URL and a real social preview image before launch. -->
+  <meta property="og:url" content="https://www.tenbelowpress.com/" />
+  <meta property="og:image" content="/og-image.jpg" />
+
+  <!-- Replace with the real deployed URL before launch. -->
+  <link rel="canonical" href="https://www.tenbelowpress.com/" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap brand">
+      <a class="wordmark" href="#">
+        <img
+          src="/ten-below-press-logo.png"
+          alt="Ten Below Press"
+          class="wordmark__logo"
+          width="180"
+          height="120"
+        />
+      </a>
+      <p class="brand__tagline">Fiction written in Norway</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="publication" aria-label="Current publication">
+      <div class="wrap">
+        <!-- Rendered from src/config/books.js — add new titles there. -->
+        <ul class="book-list" id="book-list"></ul>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p class="site-footer__name">Ten Below Press &middot; <a class="site-footer__email" href="mailto:contact@tenbelowpress.com">contact@tenbelowpress.com</a></p>
+      <p class="site-footer__copyright">&copy; <span id="year">2026</span> Ten Below Press. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
