@@ -10,7 +10,7 @@ function renderBookCard(book) {
   const ctaHref = cta.mailerliteFormId ? 'javascript:void(0)' : cta.url;
   const ctaClass = cta.mailerliteFormId ? 'button ml-onclick-form' : 'button';
   const ctaOnclick = cta.mailerliteFormId
-    ? ` onclick="ml('show', '${cta.mailerliteFormId}', true)"`
+    ? ` onclick="showMlPopup('${cta.mailerliteFormId}')"`
     : '';
 
   li.innerHTML = `
