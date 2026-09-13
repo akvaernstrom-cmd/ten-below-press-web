@@ -22,8 +22,8 @@ export const books = [
     coverAlt: 'Cover of Snow Melts on My Boots by Åsmund Kværnstrøm',
     cta: {
       label: 'Read an advance copy →',
-      // Placeholder link — replace with the real advance-copy URL.
-      url: '#',
+      // Opens the MailerLite advance-copy signup form.
+      mailerliteFormId: 'XvtUkq',
     },
   },
 ];

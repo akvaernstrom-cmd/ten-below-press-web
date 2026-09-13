@@ -6,6 +6,12 @@ function renderBookCard(book) {
   li.className = 'book-card';
 
   const statusLabel = STATUS_LABELS[book.status] ?? book.status;
+  const cta = book.cta;
+  const ctaHref = cta.mailerliteFormId ? 'javascript:void(0)' : cta.url;
+  const ctaClass = cta.mailerliteFormId ? 'button ml-onclick-form' : 'button';
+  const ctaOnclick = cta.mailerliteFormId
+    ? ` onclick="ml('show', '${cta.mailerliteFormId}', true)"`
+    : '';
 
   li.innerHTML = `
     <div class="book-card__cover">
@@ -21,8 +27,8 @@ function renderBookCard(book) {
       <h3 class="book-card__title">${book.title}</h3>
       <p class="book-card__author">${book.author}</p>
       <p class="book-card__status">${statusLabel}</p>
-      <a class="button" href="${book.cta.url}">
-        ${book.cta.label}
+      <a class="${ctaClass}" href="${ctaHref}"${ctaOnclick}>
+        ${cta.label}
       </a>
     </div>
   `;
